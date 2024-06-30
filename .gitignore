@@ -41,6 +41,7 @@ build/
 coverage/
 node_modules/
 *.lock
+package-lock.json
 
 # Temporary files
 *.tmp
