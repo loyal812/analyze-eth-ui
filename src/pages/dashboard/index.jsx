@@ -1,10 +1,26 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
+import { getAnalyzeOverview } from '../../redux/analyzeReducer';
+import { openSnackBar } from '../../redux/snackBarReducer';
+import { useDispatch } from 'react-redux';
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      try {
+        let res = await dispatch(getAnalyzeOverview());
+        console.log("analyzed overview:", res)
+      } catch (err) {
+        dispatch(openSnackBar({ status: "error", message: "Error occured fetching data" }))
+        // console.log('Error occured when fetching data.');
+      }
+    })();
+  }, []);
+
   // Pie Chart Data
   const wolf_data = [
     { value: 8087, label: 'WOLF Holders', color: '#9001CB' }, //, color: '#610094'
