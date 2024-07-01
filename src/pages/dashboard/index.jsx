@@ -282,6 +282,17 @@ export default function Dashboard() {
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      Overall Activity Level
+                    </th>
+                    <td className="px-6 py-4">
+                      {analyzeData.wolf_tx_total_frequency}
+                    </td>
+                    <td className="px-6 py-4">
+                      {analyzeData.brett_tx_total_frequency}
+                    </td>
+                  </tr>
+                  <tr className="bg-white dark:bg-gray-800">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       Transaction Frequency
                     </th>
                     <td className="px-6 py-4">
@@ -296,10 +307,10 @@ export default function Dashboard() {
                       Top Purchase Sources
                     </th>
                     <td className="px-6 py-4">
-                      Exchange A1, Exchange A2, Exchange A3
+                      Uniswap: Universal Router, MEV Bot, Exchange Proxy Flash Wallet, 1inch v5
                     </td>
                     <td className="px-6 py-4">
-                      Exchange B1, Exchange B2, Exchange B3
+                      Uniswap: Universal Router, MEV Bot, Exchange Proxy Flash Wallet, coakie.eth
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -307,10 +318,10 @@ export default function Dashboard() {
                       Common Purchase Source
                     </th>
                     <td className="px-6 py-4">
-                      Exchange C
+                      Uniswap: Universal Router, MEV Bot, Exchange Proxy Flash Wallet
                     </td>
                     <td className="px-6 py-4">
-                      Exchange C
+                      Uniswap: Universal Router, MEV Bot, Exchange Proxy Flash Wallet
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -322,17 +333,6 @@ export default function Dashboard() {
                     </td>
                     <td className="px-6 py-4">
                       Token X, Token Y
-                    </td>
-                  </tr>
-                  <tr className="bg-white dark:bg-gray-800">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      Overall Activity Level
-                    </th>
-                    <td className="px-6 py-4">
-                      50 tx per month
-                    </td>
-                    <td className="px-6 py-4">
-                      50 tx per month
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
