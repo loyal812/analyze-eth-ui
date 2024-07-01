@@ -263,7 +263,7 @@ export default function Dashboard() {
                       WOLF to BRETT Swap
                     </th>
                     <td className="px-6 py-4">
-                      1,500,000
+                      3249451806.0870805
                     </td>
                     <td className="px-6 py-4">
                       0
@@ -277,7 +277,7 @@ export default function Dashboard() {
                       0
                     </td>
                     <td className="px-6 py-4">
-                      13,500,000
+                      16795256155.359762
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -285,10 +285,10 @@ export default function Dashboard() {
                       Transaction Frequency
                     </th>
                     <td className="px-6 py-4">
-                      5 per month
+                      {analyzeData.wolf_tx_monthly_frequency} tx per month
                     </td>
                     <td className="px-6 py-4">
-                      3 per month
+                      {analyzeData.brett_tx_monthly_frequency} tx per month
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
