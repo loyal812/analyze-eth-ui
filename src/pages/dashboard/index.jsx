@@ -99,8 +99,8 @@ export default function Dashboard() {
   ];
 
   const brett_gain_loss = [
-    { value: 1000, label: 'Net', color: '#9001CB' }, //, color: '#610094'
-    { value: 0.00001, label: 'Gain/Loss', color: '#DA00FF' },
+    { value: 1000, label: 'Net', color: '#02B2AF' }, //, color: '#610094'
+    { value: 0.00001, label: 'Gain/Loss', color: '#72CCFF' },
   ];
 
   const size = {
