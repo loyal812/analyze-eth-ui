@@ -36,6 +36,11 @@ export default function Dashboard() {
     { value: analyzeData.wolf_outgoings, label: 'Outflow', color: '#DA00FF' },
   ];
 
+  const wolf_gain_loss = [
+    { value: 1000, label: 'Net', color: '#9001CB' }, //, color: '#610094'
+    { value: 0, label: 'Gain/Loss', color: '#DA00FF' },
+  ];
+
   const brett_overlap_holder_data = [
     { value: 722, label: 'Only BRETT Holders', color: '#02B2AF' }, //, color: '#610094'
     { value: 268, label: 'Overlap Holders', color: '#72CCFF' }
@@ -44,6 +49,11 @@ export default function Dashboard() {
   const brett_investment_behavior_data = [
     { value: analyzeData.brett_incomes, label: 'Inflow', color: '#02B2AF' }, //, color: '#610094'
     { value: analyzeData.brett_outgoings, label: 'Outflow', color: '#72CCFF' }
+  ];
+
+  const brett_gain_loss = [
+    { value: 1000, label: 'Net', color: '#9001CB' }, //, color: '#610094'
+    { value: 0.00001, label: 'Gain/Loss', color: '#DA00FF' },
   ];
 
   const size = {
@@ -81,7 +91,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className='bg-slate-950 w-full text-white'>
+    <div className='bg-slate-950 w-full min-h-[100vh] text-white'>
       <div>
         <h1 className='text-center text-3xl font-bold p-2'>Top 1000 BRETT & WOLF Holders Analyze Result</h1>
 
@@ -147,7 +157,7 @@ export default function Dashboard() {
             </div>
             <div className='w-[416px] '>
               <p className='text-center text-2xl'>
-                Overlap of Top Holders: {268}
+                Gains/Losses:
               </p>
               <br />
               <div className='flex'>
@@ -155,10 +165,10 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     WOLF
                   </p>
-                  <PieChart series={[{ data: wolf_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: wolf_gain_loss, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
-                    <PieCenterLabel>{3.53} %</PieCenterLabel>
+                    <PieCenterLabel>{0} %</PieCenterLabel>
                   </PieChart>
                 </div>
 
@@ -166,10 +176,10 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     BRETT
                   </p>
-                  <PieChart series={[{ data: brett_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: brett_gain_loss, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
-                    <PieCenterLabel>{11.17} %</PieCenterLabel>
+                    <PieCenterLabel>1.9e-14 %</PieCenterLabel>
                   </PieChart>
                 </div>
               </div>
@@ -340,32 +350,10 @@ export default function Dashboard() {
                       Gains/Losses
                     </th>
                     <td className="px-6 py-4">
-                      + 25%
+                      0.0%
                     </td>
                     <td className="px-6 py-4">
-                      - 18%
-                    </td>
-                  </tr>
-                  <tr className="bg-white dark:bg-gray-800">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      Flow Patterns (Inflow)
-                    </th>
-                    <td className="px-6 py-4">
-                      60%
-                    </td>
-                    <td className="px-6 py-4">
-                      55%
-                    </td>
-                  </tr>
-                  <tr className="bg-white dark:bg-gray-800">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      Flow Patterns (Outflow)
-                    </th>
-                    <td className="px-6 py-4">
-                      40%
-                    </td>
-                    <td className="px-6 py-4">
-                      45%
+                      1.968504565219422e-14%
                     </td>
                   </tr>
                 </tbody>
