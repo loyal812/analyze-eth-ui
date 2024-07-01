@@ -329,10 +329,10 @@ export default function Dashboard() {
                       Commonly Held Tokens
                     </th>
                     <td className="px-6 py-4">
-                      Token X, Token Y
+                      INUNOMICS, ANDY, PEIPEIEW
                     </td>
                     <td className="px-6 py-4">
-                      Token X, Token Y
+                      INUNOMICS, ANDY, PEIPEIEW
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
