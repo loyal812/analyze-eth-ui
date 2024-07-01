@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
@@ -9,11 +9,15 @@ import { useDispatch } from 'react-redux';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+
+  const [analyzeData, setAnalyzeData] = useState({})
+
   useEffect(() => {
     (async () => {
       try {
         let res = await dispatch(getAnalyzeOverview());
         console.log("analyzed overview:", res)
+        setAnalyzeData(res)
       } catch (err) {
         dispatch(openSnackBar({ status: "error", message: "Error occured fetching data" }))
         // console.log('Error occured when fetching data.');
@@ -22,14 +26,24 @@ export default function Dashboard() {
   }, []);
 
   // Pie Chart Data
-  const wolf_data = [
-    { value: 8087, label: 'WOLF Holders', color: '#9001CB' }, //, color: '#610094'
+  const wolf_overlap_holder_data = [
+    { value: 722, label: 'Only WOLF Holders', color: '#9001CB' }, //, color: '#610094'
     { value: 268, label: 'Overlap Holders', color: '#DA00FF' }
   ];
 
-  const brett_data = [
-    { value: 2399, label: 'BRETT Holders', color: '#02B2AF' }, //, color: '#610094'
+  const wolf_investment_behavior_data = [
+    { value: analyzeData.wolf_incomes, label: 'Inflow', color: '#9001CB' }, //, color: '#610094'
+    { value: analyzeData.wolf_outgoings, label: 'Outflow', color: '#DA00FF' },
+  ];
+
+  const brett_overlap_holder_data = [
+    { value: 722, label: 'Only BRETT Holders', color: '#02B2AF' }, //, color: '#610094'
     { value: 268, label: 'Overlap Holders', color: '#72CCFF' }
+  ];
+
+  const brett_investment_behavior_data = [
+    { value: analyzeData.brett_incomes, label: 'Inflow', color: '#02B2AF' }, //, color: '#610094'
+    { value: analyzeData.brett_outgoings, label: 'Outflow', color: '#72CCFF' }
   ];
 
   const size = {
@@ -69,7 +83,7 @@ export default function Dashboard() {
   return (
     <div className='bg-slate-950 w-full text-white'>
       <div>
-        <h1 className='text-center text-3xl font-bold p-2'>BRETT & WOLF Analyze Result</h1>
+        <h1 className='text-center text-3xl font-bold p-2'>Top 1000 BRETT & WOLF Holders Analyze Result</h1>
 
         <div className='grid grid-cols-12'>
           <div className='col-span-3 mx-auto space-y-12'>
@@ -83,10 +97,10 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     WOLF
                   </p>
-                  <PieChart series={[{ data: wolf_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: wolf_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
-                    <PieCenterLabel>{3.53} %</PieCenterLabel>
+                    <PieCenterLabel>{26.8} %</PieCenterLabel>
                   </PieChart>
                 </div>
 
@@ -94,10 +108,39 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     BRETT
                   </p>
-                  <PieChart series={[{ data: brett_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: brett_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
-                    <PieCenterLabel>{11.17} %</PieCenterLabel>
+                    <PieCenterLabel>{26.8} %</PieCenterLabel>
+                  </PieChart>
+                </div>
+              </div>
+            </div>
+            <div className='w-[416px] '>
+              <p className='text-center text-2xl'>
+                Investment Behavior:
+              </p>
+              <br />
+              <div className='flex'>
+                <div className='w-52'>
+                  <p className='text-center text-xl'>
+                    WOLF
+                  </p>
+                  <PieChart series={[{ data: wolf_investment_behavior_data, innerRadius: 55 }]} {...size} slotProps={{
+                    legend: { hidden: true },
+                  }}>
+                    <PieCenterLabel>{(analyzeData.wolf_incomes / analyzeData.wolf_tokens * 100).toFixed(2)} %</PieCenterLabel>
+                  </PieChart>
+                </div>
+
+                <div className='w-52'>
+                  <p className='text-center text-xl'>
+                    BRETT
+                  </p>
+                  <PieChart series={[{ data: brett_investment_behavior_data, innerRadius: 55 }]} {...size} slotProps={{
+                    legend: { hidden: true },
+                  }}>
+                    <PieCenterLabel>{(analyzeData.brett_incomes / analyzeData.brett_tokens * 100).toFixed(2)} %</PieCenterLabel>
                   </PieChart>
                 </div>
               </div>
@@ -112,7 +155,7 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     WOLF
                   </p>
-                  <PieChart series={[{ data: wolf_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: wolf_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
                     <PieCenterLabel>{3.53} %</PieCenterLabel>
@@ -123,36 +166,7 @@ export default function Dashboard() {
                   <p className='text-center text-xl'>
                     BRETT
                   </p>
-                  <PieChart series={[{ data: brett_data, innerRadius: 55 }]} {...size} slotProps={{
-                    legend: { hidden: true },
-                  }}>
-                    <PieCenterLabel>{11.17} %</PieCenterLabel>
-                  </PieChart>
-                </div>
-              </div>
-            </div>
-            <div className='w-[416px] '>
-              <p className='text-center text-2xl'>
-                Overlap of Top Holders: {268}
-              </p>
-              <br />
-              <div className='flex'>
-                <div className='w-52'>
-                  <p className='text-center text-xl'>
-                    WOLF
-                  </p>
-                  <PieChart series={[{ data: wolf_data, innerRadius: 55 }]} {...size} slotProps={{
-                    legend: { hidden: true },
-                  }}>
-                    <PieCenterLabel>{3.53} %</PieCenterLabel>
-                  </PieChart>
-                </div>
-
-                <div className='w-52'>
-                  <p className='text-center text-xl'>
-                    BRETT
-                  </p>
-                  <PieChart series={[{ data: brett_data, innerRadius: 55 }]} {...size} slotProps={{
+                  <PieChart series={[{ data: brett_overlap_holder_data, innerRadius: 55 }]} {...size} slotProps={{
                     legend: { hidden: true },
                   }}>
                     <PieCenterLabel>{11.17} %</PieCenterLabel>
@@ -183,10 +197,10 @@ export default function Dashboard() {
                       Holders
                     </th>
                     <td className="px-6 py-4">
-                      9000
+                      1000
                     </td>
                     <td className="px-6 py-4">
-                      4500
+                      1000
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -194,10 +208,10 @@ export default function Dashboard() {
                       Holders Overlap
                     </th>
                     <td className="px-6 py-4">
-                      900 (25%)
+                      268 (26.8%)
                     </td>
                     <td className="px-6 py-4">
-                      900 (40%)
+                      268 (26.8%)
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -205,10 +219,10 @@ export default function Dashboard() {
                       Average Acquisition Cost
                     </th>
                     <td className="px-6 py-4">
-                      $5,000
+                      ${analyzeData.wolf_tokens}
                     </td>
                     <td className="px-6 py-4">
-                      $3,000
+                      ${analyzeData.brett_tokens}
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -216,10 +230,10 @@ export default function Dashboard() {
                       Token Inflow
                     </th>
                     <td className="px-6 py-4">
-                      500,000
+                      ${analyzeData.wolf_incomes} ({analyzeData.wolf_incomes / analyzeData.wolf_tokens * 100} %)
                     </td>
                     <td className="px-6 py-4">
-                      300,000
+                      ${analyzeData.brett_incomes} ({analyzeData.brett_incomes / analyzeData.brett_tokens * 100} %)
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -227,10 +241,10 @@ export default function Dashboard() {
                       Token Outflow
                     </th>
                     <td className="px-6 py-4">
-                      500,000
+                      ${analyzeData.wolf_outgoings} ({analyzeData.wolf_outgoings / analyzeData.wolf_tokens * 100} %)
                     </td>
                     <td className="px-6 py-4">
-                      300,000
+                      ${analyzeData.brett_outgoings} ({analyzeData.brett_outgoings / analyzeData.brett_tokens * 100} %)
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -241,7 +255,7 @@ export default function Dashboard() {
                       HODL
                     </td>
                     <td className="px-6 py-4">
-                      Trade
+                      HODL
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
