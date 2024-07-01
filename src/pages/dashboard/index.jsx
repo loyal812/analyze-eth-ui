@@ -12,12 +12,56 @@ export default function Dashboard() {
 
   const [analyzeData, setAnalyzeData] = useState({})
 
+  const [wolfDailyData, setWolfDailyData] = useState([])
+  const [brettDailyData, setBrettDailyData] = useState([])
+  const [xWolfDailyLabels, setXWolfDailyLabels] = useState([])
+
+  const [wolfWeeklyData, setWolfWeeklyData] = useState([])
+  const [brettWeeklyData, setBrettWeeklyData] = useState([])
+  const [xWolfWeeklyLabels, setXWolfWeeklyLabels] = useState([])
+  const [xBrettWeeklyLabels, setXBrettWeeklyLabels] = useState([])
+
+  const [wolfMonthlyData, setWolfMonthlyData] = useState([])
+  const [brettMonthlyData, setBrettMonthlyData] = useState([])
+  const [xWolfMonthlyLabels, setXWolfMonthlyLabels] = useState([])
+
+  // Line Chart Data
+  // console.log("daily: ", analyzeData.brett_tx_daily_freq)
+  // const wolfDailyData = analyzeData.wolf_tx_daily_freq.map(item => item.count)
+  // const brettDailyData = analyzeData.brett_tx_daily_freq.map(item => item.count)
+  // const xWolfDailyLabels = analyzeData.wolf_tx_daily_freq.map(item => item.date)
+
+  // console.log("weekly: ", analyzeData.brett_tx_weekly_freq)
+  // const wolfWeeklyData = analyzeData.wolf_tx_weekly_freq.map(item => item.count)
+  // const brettWeeklyData = analyzeData.brett_tx_weekly_freq.map(item => item.count)
+  // const xWolfWeeklyLabels = analyzeData.wolf_tx_weekly_freq.map(item => item.week)
+
+  // console.log("weekly: ", analyzeData.brett_tx_weekly_freq)
+  // const brettWeeklyData = analyzeData.brett_tx_weekly_freq.map(item => item.count)
+  // const xBrettWeeklyLabels = analyzeData.brett_tx_weekly_freq.map(item => item.week)
+
+  // console.log("monthly: ", analyzeData.brett_tx_monthly_freq)
+  // const wolfMonthlyData = analyzeData.wolf_tx_monthly_freq.map(item => item.count)
+  // const brettMonthlyData = analyzeData.brett_tx_monthly_freq.map(item => item.count)
+  // const xWolfMonthlyLabels = analyzeData.wolf_tx_monthly_freq.map(item => item.month)
+
   useEffect(() => {
     (async () => {
       try {
         let res = await dispatch(getAnalyzeOverview());
         console.log("analyzed overview:", res)
         setAnalyzeData(res)
+
+
+        setWolfDailyData(res.wolf_tx_daily_freq.map(item => item.count))
+        setBrettDailyData(res.brett_tx_daily_freq.map(item => item.count))
+        setXWolfDailyLabels(res.wolf_tx_daily_freq.map(item => item.date))
+
+        setWolfWeeklyData(res.wolf_tx_weekly_freq.map(item => item.count))
+        setXWolfWeeklyLabels(res.wolf_tx_weekly_freq.map(item => item.week))
+
+        setBrettWeeklyData(res.brett_tx_weekly_freq.map(item => item.count))
+        setXBrettWeeklyLabels(res.brett_tx_weekly_freq.map(item => item.week))
       } catch (err) {
         dispatch(openSnackBar({ status: "error", message: "Error occured fetching data" }))
         // console.log('Error occured when fetching data.');
@@ -76,19 +120,6 @@ export default function Dashboard() {
       </StyledText>
     );
   }
-
-  // Line Chart Data
-  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-  const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-  const xLabels = [
-    'Page A',
-    'Page B',
-    'Page C',
-    'Page D',
-    'Page E',
-    'Page F',
-    'Page G',
-  ];
 
   return (
     <div className='bg-slate-950 w-full min-h-[100vh] text-white'>
@@ -295,10 +326,10 @@ export default function Dashboard() {
                       Overall Activity Level
                     </th>
                     <td className="px-6 py-4">
-                      {analyzeData.wolf_tx_total_frequency}
+                      {analyzeData.wolf_tx_total_avg}
                     </td>
                     <td className="px-6 py-4">
-                      {analyzeData.brett_tx_total_frequency}
+                      {analyzeData.brett_tx_total_avg}
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -306,10 +337,10 @@ export default function Dashboard() {
                       Transaction Frequency
                     </th>
                     <td className="px-6 py-4">
-                      {analyzeData.wolf_tx_monthly_frequency} tx per month
+                      {analyzeData.wolf_tx_monthly_avg} tx per month
                     </td>
                     <td className="px-6 py-4">
-                      {analyzeData.brett_tx_monthly_frequency} tx per month
+                      {analyzeData.brett_tx_monthly_avg} tx per month
                     </td>
                   </tr>
                   <tr className="bg-white dark:bg-gray-800">
@@ -363,18 +394,18 @@ export default function Dashboard() {
           <div className='col-span-3 mx-auto'>
             <div>
               <p className='text-center text-2xl'>
-                Overlap of Top Holders: {268}
+                Daily Transaction Frequency:
               </p>
               <LineChart
                 width={450}
                 height={250}
                 series={[
-                  { data: pData, label: 'WOLF' },
-                  { data: uData, label: 'BRETT' },
+                  { data: wolfDailyData, label: 'WOLF' },
+                  { data: brettDailyData, label: 'BRETT' },
                 ]}
                 xAxis={[{
                   scaleType: 'point',
-                  data: xLabels,
+                  data: xWolfDailyLabels,
                   fill: 'white',
                   tickLabelStyle: {
                     fill: 'white'
@@ -398,18 +429,18 @@ export default function Dashboard() {
 
             <div>
               <p className='text-center text-2xl'>
-                Overlap of Top Holders: {268}
+                WOLF Weekly Transaction Frequency:
               </p>
               <LineChart
                 width={450}
                 height={250}
                 series={[
-                  { data: pData, label: 'WOLF' },
-                  { data: uData, label: 'BRETT' },
+                  { data: wolfWeeklyData, label: 'WOLF' },
+                  // { data: wolfWeeklyData, label: 'BRETT' },
                 ]}
                 xAxis={[{
                   scaleType: 'point',
-                  data: xLabels,
+                  data: xWolfWeeklyLabels,
                   fill: 'white',
                   tickLabelStyle: {
                     fill: 'white'
@@ -433,18 +464,18 @@ export default function Dashboard() {
 
             <div>
               <p className='text-center text-2xl'>
-                Overlap of Top Holders: {268}
+                BRETT Weekly Transaction Frequency:
               </p>
               <LineChart
                 width={450}
                 height={250}
                 series={[
-                  { data: pData, label: 'WOLF' },
-                  { data: uData, label: 'BRETT' },
+                  // { data: brettMonthlyData, label: 'WOLF' },
+                  { data: brettWeeklyData, label: 'BRETT' },
                 ]}
                 xAxis={[{
                   scaleType: 'point',
-                  data: xLabels,
+                  data: xBrettWeeklyLabels,
                   fill: 'white',
                   tickLabelStyle: {
                     fill: 'white'
