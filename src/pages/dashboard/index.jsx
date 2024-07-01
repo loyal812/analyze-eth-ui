@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import { getAnalyzeOverview } from '../../redux/analyzeReducer';
 import { openSnackBar } from '../../redux/snackBarReducer';
 import { useDispatch } from 'react-redux';
+import { setLoading } from '../../redux/globalReducer';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export default function Dashboard() {
   useEffect(() => {
     (async () => {
       try {
+        dispatch(setLoading(true));
         let res = await dispatch(getAnalyzeOverview());
         console.log("analyzed overview:", res)
         setAnalyzeData(res)
@@ -62,6 +64,7 @@ export default function Dashboard() {
 
         setBrettWeeklyData(res.brett_tx_weekly_freq.map(item => item.count))
         setXBrettWeeklyLabels(res.brett_tx_weekly_freq.map(item => item.week))
+        dispatch(setLoading(false));
       } catch (err) {
         dispatch(openSnackBar({ status: "error", message: "Error occured fetching data" }))
         // console.log('Error occured when fetching data.');
