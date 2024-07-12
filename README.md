@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# WOLF and BRETT Token Analysis Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project provides a comprehensive data analysis of the WOLF and BRETT tokens, focusing on the behavior and patterns of their top holders. The analysis covers various aspects including overlap of holders, investment behavior, token swapping patterns, transaction frequency, purchase sources, portfolio diversity, wallet activity, historical performance, wallet creation date, and token flow analysis. The frontend of this project is developed using React.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+### Overlap of Top Holders
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **How many top holders hold both WOLF and BRETT tokens?**
+- **What percentage of the top holders of WOLF are also top holders of BRETT?**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Investment Behavior
 
-### `yarn test`
+- **Average amount spent to acquire WOLF compared to BRETT among the crossover holders.**
+- **Analysis of whether the top holders of both tokens are more likely to HODL or trade their tokens.**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Token Swapping Patterns
 
-### `yarn build`
+- **Volume of WOLF swapped to BRETT and vice versa among these wallets.**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Transaction Frequency
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Comparison of transaction frequency for WOLF and BRETT among crossover holders.**
+- **Identification of higher transaction frequency for one token over the other.**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Purchase Sources
 
-### `yarn eject`
+- **Primary platforms for purchasing WOLF and BRETT tokens by top holders.**
+- **Common platforms preferred for acquiring both tokens.**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Portfolio Diversity
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Other tokens commonly held by wallets that own both WOLF and BRETT.**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Wallet Activity
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Overall activity level of wallets holding both tokens, including non-token-related transactions.**
+- **Comparison of activity levels between wallets holding both tokens and those holding only one.**
 
-## Learn More
+### Historical Performance
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Historical gains or losses for crossover holders from holding or trading WOLF and BRETT.**
+- **Comparison of success in terms of gains between crossover holders and those holding only one of the tokens.**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Wallet Creation Date
 
-### Code Splitting
+- **Analysis of whether wallets holding both tokens are generally older compared to those holding only one.**
+- **Correlation between wallet age and different holding or trading behaviors.**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Token Flow Analysis
 
-### Analyzing the Bundle Size
+- **Typical patterns of token flow (e.g., inflows, outflows) for WOLF and BRETT among these wallets.**
+- **Identification of significant differences in flow patterns for these tokens.**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+To use the dashboard, simply start the development server and navigate to `http://localhost:3000`. You can interact with various components to visualize the data and gain insights into the behavior of WOLF and BRETT token holders.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://github.com/user-attachments/assets/17f65954-bea1-46c1-a235-2d14b28ae05c)
