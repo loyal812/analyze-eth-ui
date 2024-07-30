@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
+import Analyze from './pages/analyze';
 import SignIn from './pages/signin';
 import SignUp from './pages/signup';
 import Forgot from './pages/forgot';
@@ -14,9 +15,10 @@ function App() {
     <div className="App">
       {loading && <Loading />}
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Navigate to="/analyze" />} />
 
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/analyze" element={<Analyze />} />
 
         <Route path="/forgot" element={<Forgot />} />
         <Route path="/signin" element={<SignIn />} />
